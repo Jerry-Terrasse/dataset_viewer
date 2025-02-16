@@ -22,7 +22,7 @@
                     <td ondblclick="openModal('{{ prefix }}_{{ key }}_{{ outer_index }}_{{ col }}')">
                         {% if cell is string and cell|length > 200 %}
                         {{ cell[:200] }}...
-                        <div id="full-{{ prefix }}_{{ key }}_{{ outer_index }}_{{ col }}" style="display:none;">
+                        <div id="full-{{ prefix }}_{{ key }}_{{ outer_index }}_{{ col }}" class="no-mathjax" style="display:none;">
                             {{ cell.replace('\n\n', '\n') }}
                         </div>
                         {% else %}
@@ -52,7 +52,7 @@
     <span ondblclick="openModal('{{ prefix }}_{{ key|default('') }}')">
         {{ value[:200] }}...
     </span>
-    <div id="full-{{ prefix }}_{{ key|default('') }}" style="display:none;">
+    <div id="full-{{ prefix }}_{{ key|default('') }}" class="no-mathjax" style="display:none;">
         {{ value }}
     </div>
     {% else %}

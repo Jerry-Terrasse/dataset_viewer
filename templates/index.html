@@ -46,7 +46,8 @@
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
-        processEscapes: true
+        processEscapes: true,
+        ignoreClass: 'no-mathjax'
       }
     });
   </script>
@@ -90,7 +91,7 @@
                 <td ondblclick="openModal('{{ loop.index0 }}_{{ key }}')">
                   {% if value is string and value|length > 200 %}
                     {{ value[:200] }}...
-                    <div id="full-{{ loop.index0 }}_{{ key }}" style="display:none;">{{ value }}</div>
+                    <div id="full-{{ loop.index0 }}_{{ key }}" class="no-mathjax" style="display:none;">{{ value }}</div>
                   {% else %}
                     {{ value }}
                   {% endif %}
@@ -110,7 +111,7 @@
   <div id="myModal" class="modal">
       <div class="modal-content">
           <span class="close" onclick="closeModal()">&times;</span>
-          <pre id="modal-body"></pre>
+          <pre><div id="modal-body"></div></pre>
       </div>
   </div>
   
@@ -118,10 +119,11 @@
     function openModal(id) {
       var fullTextDiv = document.getElementById('full-' + id);
       if (fullTextDiv) {
+        fullTextDiv.classList.remove('no-mathjax');
         document.getElementById('modal-body').innerHTML = fullTextDiv.innerHTML;
         document.getElementById('myModal').style.display = 'block';
         if (typeof MathJax !== "undefined") {
-           // MathJax.Hub.Queue(["Typeset", MathJax.Hub, "modal-body"]);
+           MathJax.Hub.Queue(["Typeset", MathJax.Hub, "modal-body"]);
         }
       }
     }
