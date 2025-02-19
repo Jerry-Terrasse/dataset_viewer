@@ -89,11 +89,12 @@
           {% for item in data %}
             <tr>
               <td style="width:30px;">{{ loop.index }}</td>
+              {% set outer_index = loop.index0 %}
               {% for key, value in item.items() %}
-                <td ondblclick="openModal('{{ loop.index0 }}_{{ key }}')">
+                <td ondblclick="openModal('{{ outer_index }}_{{ key }}')">
                   {% if value is string and value|length > 200 %}
                     {{ value[:200] }}...
-                    <div id="full-{{ loop.index0 }}_{{ key }}" class="no-mathjax" style="display:none;">{{- value -}}</div>
+                    <div id="full-{{ outer_index }}_{{ key }}" class="no-mathjax" style="display:none;">{{- value -}}</div>
                   {% else %}
                     {{ value }}
                   {% endif %}
