@@ -61,7 +61,7 @@
   <div class="upload-form">
     <form method="POST" enctype="multipart/form-data">
       <label for="file">上传文件 (支持 JSON 或 JSONL 格式): </label>
-      <input type="file" name="file" id="file" accept=".json,.txt">
+      <input type="file" name="file" id="file" accept=".jsonl,.json,.txt">
       <button type="submit">上传并显示</button>
     </form>
     {% if error %}
@@ -91,7 +91,7 @@
                 <td ondblclick="openModal('{{ loop.index0 }}_{{ key }}')">
                   {% if value is string and value|length > 200 %}
                     {{ value[:200] }}...
-                    <div id="full-{{ loop.index0 }}_{{ key }}" class="no-mathjax" style="display:none;">{{ value }}</div>
+                    <div id="full-{{ loop.index0 }}_{{ key }}" class="no-mathjax" style="display:none;">{{- value -}}</div>
                   {% else %}
                     {{ value }}
                   {% endif %}
@@ -111,7 +111,7 @@
   <div id="myModal" class="modal">
       <div class="modal-content">
           <span class="close" onclick="closeModal()">&times;</span>
-          <pre><div id="modal-body"></div></pre>
+          <pre><div id="modal-body" style="white-space: pre-wrap;"></div></pre>
       </div>
   </div>
   
