@@ -23,7 +23,7 @@
                         {% if cell is string and cell|length > 200 %}
                         {{ cell[:200] }}...
                         <div id="full-{{ prefix }}_{{ key }}_{{ outer_index }}_{{ col }}" class="no-mathjax" style="display:none;">
-                            {{ cell.replace('\n\n', '\n') }}
+                            {{- cell.replace('\n\n', '\n') -}}
                         </div>
                         {% else %}
                         {{ cell }}
@@ -53,7 +53,7 @@
         {{ value[:200] }}...
     </span>
     <div id="full-{{ prefix }}_{{ key|default('') }}" class="no-mathjax" style="display:none;">
-        {{ value }}
+        {{- value -}}
     </div>
     {% else %}
     <span>{{ value }}</span>
