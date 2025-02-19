@@ -79,6 +79,7 @@
       <table>
         <thead>
           <tr>
+            <th style="width:30px;">No.</th>
             {% for key in data[0].keys() %}
               <th>{{ key }}</th>
             {% endfor %}
@@ -87,6 +88,7 @@
         <tbody>
           {% for item in data %}
             <tr>
+              <td style="width:30px;">{{ loop.index }}</td>
               {% for key, value in item.items() %}
                 <td ondblclick="openModal('{{ loop.index0 }}_{{ key }}')">
                   {% if value is string and value|length > 200 %}

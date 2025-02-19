@@ -9,6 +9,7 @@
         <table>
             <thead>
                 <tr>
+                    <th style="width:30px;">No.</th>
                     {% for col in value[0].keys() %}
                     <th>{{ col }}</th>
                     {% endfor %}
@@ -18,6 +19,7 @@
                 {% for item in value %}
                 {% set outer_index = loop.index0 %}
                 <tr>
+                    <td style="width:30px;">{{ loop.index }}</td>
                     {% for col, cell in item.items() %}
                     <td ondblclick="openModal('{{ prefix }}_{{ key }}_{{ outer_index }}_{{ col }}')">
                         {% if cell is string and cell|length > 200 %}
